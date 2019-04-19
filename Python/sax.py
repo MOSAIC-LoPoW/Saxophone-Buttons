@@ -1,8 +1,7 @@
 # following the example at https://makersportal.com/blog/2018/2/25/python-datalogger-reading-the-serial-output-from-arduino-to-analyze-data-using-pyserial
+# export to CSV files can be added as is described in the example
 
 import serial
-import time
-import csv
 import matplotlib
 matplotlib.use("tkAgg")
 import matplotlib.pyplot as plt
@@ -51,6 +50,7 @@ while True:
             for i in range(10):
                 state = bytes.read("uintle:8")
                 button_states[i].append(state)
+                #only show plot window amount of data points
                 button_states[i] = button_states[i][1:plot_window + 1]
                 #set ydata for each sub plot
                 linedict["line{0}".format(i)][0].set_ydata(button_states[i])
